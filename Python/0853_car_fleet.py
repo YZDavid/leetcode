@@ -37,10 +37,12 @@ class Solution2:
         cars = [(position, speed, (target - position) / speed) for position, speed in cars]
         cars.sort(reverse=True)
         fleet = len(cars)
+        car_ahead_time_taken = cars[0][2]
         for i in range(1, len(cars)):
-            car_ahead_speed = cars[i-1][2]
-            if cars[i][2] <= car_ahead_speed:
+            if cars[i][2] <= car_ahead_time_taken:
                 fleet -= 1
+            else:
+                car_ahead_time_taken = cars[i][2]
         print(cars)
         return fleet 
     
